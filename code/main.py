@@ -1,13 +1,16 @@
 import pygame, sys
-from settings import *
+from settings import screen_width, screen_height
 from text_import import game_name
 from files_import import game_icon 
+from level import Level
 
 class Game():
     def __init__(self):
         pygame.init()
         self.screen = pygame.display.set_mode((screen_width, screen_height))
         self.clock = pygame.time.Clock()
+        
+        self.level = Level()
     
     def run(self):
         while True:
@@ -18,10 +21,10 @@ class Game():
                     pygame.quit()
                     sys.exit()
             
-            self.screen.fill('black')
+            dt = self.clock.tick() / 1000
+            self.level.run(dt)
             
             pygame.display.update()
-            self.clock.tick(60)
 
 # window setup
 pygame.display.set_caption(game_name)
