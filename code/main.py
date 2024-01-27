@@ -12,7 +12,7 @@ class Game():
     def create_level(self):
         self.level = Level(display_surface)
         self.status = 'level'
-     
+    
     def run(self):
         self.level.run()
 
