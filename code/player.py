@@ -14,24 +14,32 @@ class Player(pygame.sprite.Sprite):
         # player movement
         self.direction = pygame.math.Vector2(0, 0)
         self.pos = pygame.math.Vector2(self.rect.center)
-        self.speed_setup = 20
-        self.speed = self.speed_setup
+        self.speed = 5
     
     def input(self):
         # control system for player movement
         keys = pygame.key.get_pressed()
         
+        # horizontal movement
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             self.direction.x = self.speed
-        
         elif keys[pygame.K_LEFT] or keys[pygame.K_a]:
             self.direction.x = self.speed * -1
-        
         else:
             self.direction.x = 0
+        
+        # vertical movement 
+        if keys[pygame.K_UP] or keys[pygame.K_w]:
+            self.direction.y = self.speed * -1
+        elif keys[pygame.K_DOWN] or keys[pygame.K_s]:
+            self.direction.y = self.speed
+        else:
+            self.direction.y = 0
+        
+        self.rect.x += self.direction.x
+        self.rect.y += self.direction.y
     
     def move(self):
-        
 		# normalizing a vector 
         if self.direction.magnitude() > 0:
             self.direction = self.direction.normalize()
@@ -46,7 +54,4 @@ class Player(pygame.sprite.Sprite):
     
     def update(self):
         self.input()
-        self.move()
-        
-        self.rect.x += self.direction.x
-        self.rect.y += self.direction.y
+        # self.move()

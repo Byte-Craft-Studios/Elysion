@@ -4,7 +4,6 @@ from player import Player
 
 class Level():
     def __init__(self, surface):
-        
         # get the display surface
         self.display_surface = surface
         

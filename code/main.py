@@ -1,7 +1,7 @@
 import pygame, sys
 from settings import screen_width, screen_height
 from text_import import game_name
-from files_import import game_icon 
+from files_import import game_icon
 from level import Level
 
 class Game():
