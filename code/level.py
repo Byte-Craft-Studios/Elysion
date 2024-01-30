@@ -27,6 +27,10 @@ class Level():
         # player 
         self.player.update()
         self.player.draw(self.display_surface)
+        # collisions   -- not working
+        # collisions = pygame.sprite.spritecollide(self.player, self.all_sprites, dokill=False)
+        # for self.all_sprites in collisions:
+        #     print('collision dect')
 
         # layer
         self.all_sprites.draw(self.display_surface)

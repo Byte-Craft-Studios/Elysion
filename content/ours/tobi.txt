@@ -1,5 +1,6 @@
 general story
-
+    people are slacking of (school, basketball)
+    
 
 quests
     1   have to find the game
