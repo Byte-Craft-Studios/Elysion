@@ -27,14 +27,18 @@ class Level():
         # player 
         self.player.update()
         self.player.draw(self.display_surface)
-        # collisions   -- not working
-        # collisions = pygame.sprite.spritecollide(self.player, self.all_sprites, dokill=False)
-        # for self.all_sprites in collisions:
-        #     print('collision dect')
+        
 
         # layer
         self.all_sprites.draw(self.display_surface)
 
+    def collisions(self):
+        dectcollisions = pygame.sprite.groupcollide(self.player, self.all_sprites, False, False)     # checks for collisions between Player and objects
+        if dectcollisions:
+            # respawns Player
+            player = Player((screen_width/2, screen_height/2))
+            self.player.add(player)
         
     def run(self):
+        self.collisions()
         self.update_and_draw()
