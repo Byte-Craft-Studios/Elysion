@@ -70,8 +70,9 @@ class Level():
     def update_and_draw(self, surface):
         # player 
         self.player.update()
-        self.player.draw(surface)
+        self.player.draw(self.display_surface)
         
+
         # layer
         self.all_sprites.draw(surface)
     
