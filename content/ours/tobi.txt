@@ -1,6 +1,15 @@
-general story
+general story (when Nick)
     people are slacking of (school, basketball)
+    
+    warning not to play the game
+    trying to find civilisation after character creation
     
 
 quests
     1   have to find the game
+    2   
+
+general ideas
+    character creation is neccecary (game)
+    textboxes/pop-ups for storytelling
+    quest menu
