@@ -1,10 +1,14 @@
+# import lib.
 import pygame
-from settings import tile_size, screen_height, screen_width
+
+# import variables
+from settings import tile_size, p_speed
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos):
         super().__init__()
         
+        # player setup (image + scale + rect)
         # self.image = pygame.image.load(self.image_player)
         self.image = pygame.Surface(pos)
         self.image.fill('red')
@@ -14,7 +18,7 @@ class Player(pygame.sprite.Sprite):
         # player movement
         self.direction = pygame.math.Vector2(0, 0)
         self.pos = pygame.math.Vector2(self.rect.center)
-        self.speed = 5
+        self.speed = p_speed
     
     def input(self):
         # control system for player movement
