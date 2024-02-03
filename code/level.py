@@ -67,18 +67,17 @@ class Level():
                     player.rect.top = sprite.rect.bottom
                     player.direction.y = 0
     
-    def update_and_draw(self, surface):
+    def update_and_draw(self, surface, dt):
         # player 
-        self.player.update()
-        self.player.draw(self.display_surface)
+        self.player.update(dt)
+        self.player.draw(surface)
         
-
         # layer
         self.all_sprites.draw(surface)
     
-    def run(self):
+    def run(self, dt):
         # call methods to draw sth. on the surface
-        self.update_and_draw(self.display_surface)
+        self.update_and_draw(self.display_surface, dt)
         
         # player / wall collision
         self.horizontal_movement_collision()

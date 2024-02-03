@@ -1,5 +1,5 @@
 # import lib. 
-import pygame, sys
+import pygame, sys, time
 
 # import variables
 from settings import screen_width, screen_height
@@ -19,9 +19,9 @@ class Game():
         self.level = Level(display_surface)
         self.status = 'level'
     
-    def run(self):
+    def run(self, dt):
         # call the run method on level (IMPORTANT)
-        self.level.run()
+        self.level.run(dt)
 
 # Pygame setup
 pygame.init()
@@ -47,9 +47,9 @@ while True:
     # overwrite the old level layer (IMPORTANT)
     display_surface.fill('black')
     
-    # run the game
-    game.run()
+    # for the performance (FPS)
+    dt = clock.tick() / 1000
     
-    # for the performance (FPS(60))
+    # run the game
+    game.run(dt)
     pygame.display.update()
-    clock.tick(60)

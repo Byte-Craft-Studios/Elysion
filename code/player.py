@@ -20,42 +20,39 @@ class Player(pygame.sprite.Sprite):
         self.pos = pygame.math.Vector2(self.rect.center)
         self.speed = p_speed
     
-    def input(self):
+    def input(self, dt):
         # control system for player movement
         keys = pygame.key.get_pressed()
         
         # horizontal movement
-        if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
-            self.direction.x = self.speed
-        elif keys[pygame.K_LEFT] or keys[pygame.K_a]:
-            self.direction.x = self.speed * -1
-        else:
-            self.direction.x = 0
-        
-        # vertical movement 
-        if keys[pygame.K_UP] or keys[pygame.K_w]:
-            self.direction.y = self.speed * -1
-        elif keys[pygame.K_DOWN] or keys[pygame.K_s]:
-            self.direction.y = self.speed
+        if keys[pygame.K_UP]:
+            self.direction.y = -1
+        elif keys[pygame.K_DOWN]:
+            self.direction.y = 1
         else:
             self.direction.y = 0
         
-        self.rect.x += self.direction.x
-        self.rect.y += self.direction.y
+        if keys[pygame.K_RIGHT]:
+            self.direction.x = 1
+        elif keys[pygame.K_LEFT]:
+            self.direction.x = -1
+        else:
+            self.direction.x = 0
     
-    def move(self):
+    def move(self,dt):
+        
 		# normalizing a vector 
         if self.direction.magnitude() > 0:
             self.direction = self.direction.normalize()
         
 		# horizontal movement
-        self.pos.x += self.direction.x * self.speed
+        self.pos.x += self.direction.x * self.speed * dt
         self.rect.centerx = self.pos.x
         
 		# vertical movement
-        self.pos.y += self.direction.y * self.speed
+        self.pos.y += self.direction.y * self.speed * dt
         self.rect.centery = self.pos.y
     
-    def update(self):
-        self.input()
-        # self.move()
+    def update(self, dt):
+        self.input(dt)
+        self.move(dt)
