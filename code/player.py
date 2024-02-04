@@ -1,8 +1,9 @@
 # import lib.
 import pygame
 
-# import variables
+# import variables / functions
 from settings import tile_size, p_speed
+from debug import debug 
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos):
@@ -53,6 +54,7 @@ class Player(pygame.sprite.Sprite):
         self.pos.y += self.direction.y * self.speed * dt
         self.rect.centery = self.pos.y
     
-    def update(self, dt):
+    def update(self, dt, surface):
         self.input(dt)
         self.move(dt)
+        debug(self.direction, surface)

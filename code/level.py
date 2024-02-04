@@ -1,7 +1,7 @@
 # import lib.
 import pygame
 
-# import variables
+# import variables / functions
 from settings import screen_width, screen_height
 
 # import classes
@@ -69,7 +69,7 @@ class Level():
     
     def update_and_draw(self, surface, dt):
         # player 
-        self.player.update(dt)
+        self.player.update(dt, surface)
         self.player.draw(surface)
         
         # layer

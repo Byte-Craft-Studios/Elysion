@@ -1,7 +1,7 @@
 # import lib. 
 import pygame, sys, time
 
-# import variables
+# import variables / functions
 from settings import screen_width, screen_height
 from text_import import game_name
 
