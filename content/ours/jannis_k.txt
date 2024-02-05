@@ -1,0 +1,137 @@
+#2
+
+In the game:
+
+    General:
+        The style is medieval old. The mood a bit mysterious and exciting.
+
+        The game master usually gives you the tasks.
+        
+        The game ends itself if you have a task in real life or if you just want to wait.
+        (Then there is the task that you have to do on the screen or a countdown runs down)
+        (In the background there is always a dark cave with the game master who is waiting for you)
+
+        The player only has a limited inventory (maybe you can expand comb with a backpack).
+        He can only have one object in his hand (sign also in the other hand)
+
+        The game itself is everything in a big level with a huge map
+        There will be a mini map in the top right of the corner so that the player has a better overview of the world
+        The Mini Map is only gradually uncovered.
+
+        In itself, you can enter all places, but it is intended that some places can only be entered with a certain strength / level.
+        That is why you are warned by an NPC or the game master that you may not be strong enough.
+        If the player still exceeds the place, he will not have a chance against the monsters.
+        And then it is up to the player whether you will survive or the game will be over forever
+
+        You can only play the game once.
+        Once you have died and you try to start the game, the lettering comes, "you had your chance".
+
+
+    Begin:
+        Game starts in a tower where you can put together your player.(See player)
+        Then you encounter the game master / moderator who explains a little bit of the game and functions.
+
+
+    Player:
+        Endurance
+        Life
+        Skills
+        Damage
+        
+        Races:
+            Eleven
+            Dark eleven
+            Knight / Warrior
+            Human
+            Dwarf
+            Vampire
+            Wizard
+            Monk
+            Healer
+            Half-blood
+        
+        Weapons:
+            Axe
+            Arc / arrows
+            Club
+            Knife
+            Dagger
+            Spear
+            Sword
+            large sword
+            Shield
+        
+        Tools:
+            Axt
+            Shovel
+            Hoe
+            hammer
+
+
+    Monster:
+        Orcs
+        Living Deads
+        Dragons
+        Golems
+        Stone monsters
+        Lizard creatures
+        Lifeless knights
+        Thieves / robbers
+        Living trees
+        Sirens
+
+
+    NPCs:
+        Moderator (game director)
+        NPCs for the quests
+        Arena master
+        Villager
+        Warrior (other players)
+        (King in the castle)
+        The dealer (only comes to the city every few days (very expensive, but also good))
+    
+
+    Important buildings to go in:
+        Tavern / Tavern
+        Arena
+        Market (small shops)
+        Smith
+        Baker (for food)
+        Houses of the NPCs
+        City hall 
+        Library
+        Dungeons
+        Wizard tower
+        (castle)
+    
+
+    Other buildings not to go in:
+        Church
+        Private houses
+        (Castle)
+        Farmer houses and fields
+    
+
+    Artifact:
+        Wish ring
+        Poisons
+        curses
+
+
+    Cities / places:
+        The abandoned tower (start)
+        The big city 
+        Small cities
+        Castle
+        Forest clearing with a small house
+        Village with battle
+        Monastery
+        Area of the magician
+        
+
+    Quests:
+        The quests should be so open that they are not too easy.
+        In the beginning, the quests have the task of showing the player the functions of the game.
+        The quest should not only be easy to achieve something, but to tell a story.
+
+        
