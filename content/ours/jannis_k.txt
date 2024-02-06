@@ -134,4 +134,36 @@ In the game:
         In the beginning, the quests have the task of showing the player the functions of the game.
         The quest should not only be easy to achieve something, but to tell a story.
 
+        You could do the map and tasks as in EREBOS ...
+        We take a city and everything has a meaning that we transferred into the game
+        And that some people we know as changed characters appear in the game
+
+        The player almost dies in some fights and then the game master gives him the opportunity to level or level, but the player has to do tasks in the real world
+        The game master is the only one who can reward the player in the form of coins
+
+        Last fight:
+            There is a final boss that can only be combated with others
+            (possible opportunity for multiplayer)
+            if necessary also with NPCs that you hire
+
+        The dwarf village:
+            You have to find the dwarf village (in the mountains)
+            There you have to buy the necessary equipment and then dismantle a certain material in the mine and then hand over to the game master or sell in the dwarf village
         
+        The Orc village:
+            You can come to this village at any time to fight and get something
+            There is a little chance for rare / special objects
+            You get orc meat that you can sell on the sharpen market
+        
+        The black market:
+            Here you can sell things that others should not notice (e.g. orc meat)
+            watch out! The black market is not always right, there is always a chance to be cheated.
+            There is also a secret trader here who is rarely there and can therefore only be found by chance.
+            This can give you a total of 2-3 tasks, which are very difficult, but also bring in a large herb.
+            The player only gets from the trader on the side, or somebody makes it a hint.
+
+        Tasks in the real world:
+            You could give the players the task of photographing someone or something or so that you can prove it.
+            The proof is loaded into a cloud and only when this has been confirmed can the player continue to play.
+            You could either do this with a code that we give the player after doing the task or that it then automatically continues.
+            Another possibility is that it is checked whether something was uploaded to the right name in the cloud and the game can then be continued (i.e. without help)

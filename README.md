@@ -1,2 +1,3 @@
-# Erebos
-Pixel art game about Erebos
+# Elysion
+
+Pixelart game
