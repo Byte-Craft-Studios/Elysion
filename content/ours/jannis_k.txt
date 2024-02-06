@@ -27,9 +27,20 @@ In the game:
         Once you have died and you try to start the game, the lettering comes, "you had your chance".
 
 
-    Begin:
+    Start:
+        You have to give your real name to play the game
+        (You can save the names of all players in advance in a list and just see whether the name is in the list)
+        
+        Then the player has to choose a name that has not yet been awarded
+        (All names that are assigned are stored in a file in Data)
+
         Game starts in a tower where you can put together your player.(See player)
         Then you encounter the game master / moderator who explains a little bit of the game and functions.
+
+        The player is expressly asked if he really wants to continue or want to stop.
+        The player should get the opportunity to stop at any time.
+        (That's why we have to write the story so that you are tied up and do not want to end the game)
+
 
 
     Player:
