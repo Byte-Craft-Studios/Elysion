@@ -17,12 +17,21 @@ In the game:
         The game itself is everything in a big level with a huge map
         There will be a mini map in the top right of the corner so that the player has a better overview of the world
         The Mini Map is only gradually uncovered.
+        At the top right is the minimap (round)
 
         In itself, you can enter all places, but it is intended that some places can only be entered with a certain strength / level.
         That is why you are warned by an NPC or the game master that you may not be strong enough.
         If the player still exceeds the place, he will not have a chance against the monsters.
         And then it is up to the player whether you will survive or the game will be over forever
 
+        You can only see the levels of players who are lower than yourself 
+        
+        His own character is framed at the top left, there or underneath you can see your own level next to it is two displays: 
+            1. Life => red 
+            2. Energy => Blue
+    
+        At the bottom left are the tools / items that you have in your hand
+        
         You can only play the game once.
         Once you have died and you try to start the game, the lettering comes, "you had your chance".
 
