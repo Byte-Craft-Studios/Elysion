@@ -3,6 +3,7 @@ import pygame
 
 # import variables / functions
 from settings import tile_size, p_speed
+from files_import import ph_player
 from debug import debug 
 
 class Player(pygame.sprite.Sprite):
@@ -11,8 +12,9 @@ class Player(pygame.sprite.Sprite):
         
         # player setup (image + scale + rect)
         # self.image = pygame.image.load(self.image_player)
-        self.image = pygame.Surface(pos)
-        self.image.fill('red')
+        # self.image = pygame.Surface(pos)
+        self.image = ph_player
+        # self.image.fill('red')
         self.image = pygame.transform.scale(self.image, (tile_size, tile_size))
         self.rect = self.image.get_rect(center = pos)
         
@@ -21,7 +23,7 @@ class Player(pygame.sprite.Sprite):
         self.pos = pygame.math.Vector2(self.rect.center)
         self.speed = p_speed
     
-    def input(self, dt):
+    def input(self):
         # control system for player movement
         keys = pygame.key.get_pressed()
         
@@ -55,6 +57,6 @@ class Player(pygame.sprite.Sprite):
         self.rect.centery = self.pos.y
     
     def update(self, dt, surface):
-        self.input(dt)
+        self.input()
         self.move(dt)
         debug(self.direction, surface)
