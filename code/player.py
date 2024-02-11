@@ -6,21 +6,20 @@ from settings import tile_size, p_speed
 from files_import import ph_player
 from debug import debug 
 
+# import classes 
+from animation import Animation
+
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos):
         super().__init__()
         
         # player setup (image + scale + rect)
-        # self.image = pygame.image.load(self.image_player)
-        # self.image = pygame.Surface(pos)
-        self.image = ph_player
-        # self.image.fill('red')
-        self.image = pygame.transform.scale(self.image, (tile_size, tile_size))
-        self.rect = self.image.get_rect(center = pos)
+        self.image = Animation(ph_player, 4, pos)
+        # self.rect = self.image.get_rect(center = pos)
         
         # player movement
         self.direction = pygame.math.Vector2(0, 0)
-        self.pos = pygame.math.Vector2(self.rect.center)
+        self.pos = pygame.math.Vector2() #self.rect.center -- in ()
         self.speed = p_speed
     
     def input(self):
@@ -50,11 +49,11 @@ class Player(pygame.sprite.Sprite):
         
 		# horizontal movement
         self.pos.x += self.direction.x * self.speed * dt
-        self.rect.centerx = self.pos.x
+        # self.rect.centerx = self.pos.x
         
 		# vertical movement
         self.pos.y += self.direction.y * self.speed * dt
-        self.rect.centery = self.pos.y
+        # self.rect.centery = self.pos.y
     
     def update(self, dt, surface):
         self.input()

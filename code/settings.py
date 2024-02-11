@@ -9,3 +9,6 @@ solid_color = 'black'
 
 # player settings
 p_speed = 200
+
+# animation settings
+animation_speed = 0.125
