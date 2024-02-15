@@ -14,8 +14,11 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
         
         # player setup (image + scale + rect)
-        self.image = Animation(ph_player, 4, pos)
-        # self.rect = self.image.get_rect(center = pos)
+        # self.image = Animation(ph_player, 4, pos)
+        self.image = ph_player
+        self.image = pygame.transform.scale(self.image, (tile_size, tile_size))
+        # self.rect = self.image._rect()
+        self.rect = self.image.get_rect(center = pos)
         
         # player movement
         self.direction = pygame.math.Vector2(0, 0)
@@ -26,7 +29,7 @@ class Player(pygame.sprite.Sprite):
         # control system for player movement
         keys = pygame.key.get_pressed()
         
-        # horizontal movement
+        # vertical movement
         if keys[pygame.K_UP] or keys[pygame.K_w]:
             self.direction.y = -1
         elif keys[pygame.K_DOWN] or keys[pygame.K_s]:
@@ -34,6 +37,7 @@ class Player(pygame.sprite.Sprite):
         else:
             self.direction.y = 0
         
+        # horizontal movement
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             self.direction.x = 1
         elif keys[pygame.K_LEFT] or keys[pygame.K_a]:
