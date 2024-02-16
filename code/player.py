@@ -3,8 +3,9 @@ import pygame
 
 # import variables / functions
 from settings import tile_size, p_speed
-from files_import import ph_player
-from debug import debug 
+from files_import import ph_player_path, ph_player, ending
+from support import load, scale
+from debug import debug
 
 # import classes 
 from animation import Animation
@@ -15,8 +16,10 @@ class Player(pygame.sprite.Sprite):
         
         # player setup (image + scale + rect)
         # self.image = Animation(ph_player, 4, pos)
-        self.image = ph_player
-        self.image = pygame.transform.scale(self.image, (tile_size, tile_size))
+        self.image = load(ph_player)
+        
+        
+        self.image = scale(self.image, (tile_size, tile_size))
         # self.rect = self.image._rect()
         self.rect = self.image.get_rect(center = pos)
         
@@ -59,7 +62,21 @@ class Player(pygame.sprite.Sprite):
         self.pos.y += self.direction.y * self.speed * dt
         # self.rect.centery = self.pos.y
     
+    def animation(self):
+        frame_index = 1
+        frames = 4
+        animation_speed = 0.16
+        
+        while frame_index <= frames:
+            path = f'{ph_player_path}{int(frame_index)}{ending}'
+            self.image = load(path)
+            frame_index += animation_speed
+            
+            if frame_index == frames:
+                frame_index = 1
+    
     def update(self, dt, surface):
+        self.animation()
         self.input()
         self.move(dt)
         debug(self.direction, surface)
