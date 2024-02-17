@@ -4,7 +4,7 @@ import pygame
 # import variables / functions
 from settings import tile_size, p_speed
 from files_import import ph_player_path, ph_player, ending
-from support import load, scale
+from support import load
 from debug import debug
 
 # import classes 
@@ -19,8 +19,7 @@ class Player(pygame.sprite.Sprite):
         self.image = load(ph_player)
         
         
-        self.image = scale(self.image, (tile_size, tile_size))
-        # self.rect = self.image._rect()
+        self.image = pygame.transform.scale(self.image, (tile_size, tile_size))
         self.rect = self.image.get_rect(center = pos)
         
         # player movement
