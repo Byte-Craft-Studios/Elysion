@@ -16,7 +16,7 @@ class Player(pygame.sprite.Sprite):
         
         # player setup (image + scale + rect)
         # self.image = Animation(ph_player, 4, pos)
-        self.image = load(ph_player)
+        self.image = pygame.image.load(ph_player)
         
         
         self.image = pygame.transform.scale(self.image, (tile_size, tile_size))
