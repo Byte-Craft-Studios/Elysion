@@ -75,7 +75,7 @@ class Player(pygame.sprite.Sprite):
                 frame_index = 1
     
     def update(self, dt, surface):
-        self.animation()
+        # self.animation()
         self.input()
         self.move(dt)
         debug(self.direction, surface)
