@@ -54,7 +54,6 @@ while True:
     
     y = display_surface.get_height()
     x = display_surface.get_width()
-    debug((x, y), display_surface, 50)
     
     # run the game
     game.run(dt)

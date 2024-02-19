@@ -55,10 +55,12 @@ class Player(pygame.sprite.Sprite):
         
 		# horizontal movement
         self.pos.x += self.direction.x * self.speed * dt
+        self.rect.x += self.direction.x * self.speed * dt
         # self.rect.centerx = self.pos.x
         
 		# vertical movement
         self.pos.y += self.direction.y * self.speed * dt
+        self.rect.y += self.direction.y * self.speed * dt
         # self.rect.centery = self.pos.y
     
     def animation(self):
@@ -77,5 +79,6 @@ class Player(pygame.sprite.Sprite):
     def update(self, dt, surface):
         # self.animation()
         self.input()
-        self.move(dt)
-        debug(self.direction, surface)
+        self.move(1)
+        debug(round(self.direction, 1), surface, 0)
+        debug((round(self.rect.x, 1), round(self.rect.y, 1)), surface, 25)

@@ -32,7 +32,7 @@ class Level():
     def horizontal_movement_collision(self):
         # setup for horizontal movement
         player = self.player.sprite
-        player.rect.x += player.direction.x * player.speed
+        # player.rect.x += player.direction.x * player.speed
         
         # check if a block left or right besides the player
         for sprite in self.all_sprites.sprites():
@@ -51,6 +51,7 @@ class Level():
     def vertical_movement_collision(self):
         # setup for horizontal movement
         player = self.player.sprite
+        # player.rect.x += player.direction.x * player.speed
         
         # process player on ground
         for sprite in self.all_sprites.sprites():
