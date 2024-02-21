@@ -14,18 +14,21 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, pos):
         super().__init__()
         
-        # player setup (image + scale + rect)
-        # self.image = Animation(ph_player, 4, pos)
-        self.image = pygame.image.load(ph_player)
-        
-        
-        self.image = pygame.transform.scale(self.image, (tile_size, tile_size))
-        self.rect = self.image.get_rect(center = pos)
+        # player setup
+        image = pygame.image.load(ph_player)
+        self.draw_player(pos, image)
+        self.face_right = True
         
         # player movement
         self.direction = pygame.math.Vector2(0, 0)
         self.pos = pygame.math.Vector2() #self.rect.center -- in ()
         self.speed = p_speed
+    
+    def draw_player(self, pos, path):
+        self.image = path
+        
+        self.image = pygame.transform.scale(self.image, (tile_size, tile_size))
+        self.rect = self.image.get_rect(center = pos)
     
     def input(self):
         # control system for player movement
@@ -42,8 +45,10 @@ class Player(pygame.sprite.Sprite):
         # horizontal movement
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             self.direction.x = 1
+            self.face_right = True
         elif keys[pygame.K_LEFT] or keys[pygame.K_a]:
             self.direction.x = -1
+            self.face_right = False
         else:
             self.direction.x = 0
     
@@ -76,8 +81,18 @@ class Player(pygame.sprite.Sprite):
             if frame_index == frames:
                 frame_index = 1
     
-    def update(self, dt, surface):
+    def flip(self, pos):
+        img_right = pygame.image.load(ph_player)
+        img_left = pygame.transform.flip(img_right, True, False)
+        
+        if self.face_right == True:
+            self.draw_player(pos, img_right)
+        elif self.face_right == False:
+            self.draw_player(pos, img_left)
+    
+    def update(self, dt, surface, pos):
         # self.animation()
+        self.flip(pos)
         self.input()
         self.move(1)
         debug(round(self.direction, 1), surface, 0)

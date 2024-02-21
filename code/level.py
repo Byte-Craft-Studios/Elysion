@@ -22,7 +22,8 @@ class Level():
         self.player = pygame.sprite.GroupSingle()
         
         # player setup
-        player = Player((screen_width/2, screen_height/2))
+        self.player_pos = (screen_width/2, screen_height/2)
+        player = Player(self.player_pos)
         self.player.add(player)
         
         # blue wall 64x64 setup
@@ -70,7 +71,7 @@ class Level():
     
     def update_and_draw(self, surface, dt):
         # player 
-        self.player.update(dt, surface)
+        self.player.update(dt, surface, self.player_pos)
         self.player.draw(surface)
         
         # layer
