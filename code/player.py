@@ -15,20 +15,26 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
         
         # player setup
-        image = pygame.image.load(ph_player)
-        self.draw_player(pos, image)
-        self.face_right = True
+        self.img_right = pygame.image.load(ph_player)
+        self.img_left = pygame.transform.flip(self.img_right, True, False)
+        self.draw_player(pos, self.img_right)
+        self.rect = self.image.get_rect(center = pos)
+        self.facing = 'right'
         
         # player movement
         self.direction = pygame.math.Vector2(0, 0)
         self.pos = pygame.math.Vector2() #self.rect.center -- in ()
         self.speed = p_speed
+        
+        # animation setup
+        self.frame_index = 1
+        self.frames = 4
+        self.animation_speed = 0.002
     
     def draw_player(self, pos, path):
         self.image = path
         
         self.image = pygame.transform.scale(self.image, (tile_size, tile_size))
-        self.rect = self.image.get_rect(center = pos)
     
     def input(self):
         # control system for player movement
@@ -45,10 +51,10 @@ class Player(pygame.sprite.Sprite):
         # horizontal movement
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             self.direction.x = 1
-            self.face_right = True
+            self.facing = 'right'
         elif keys[pygame.K_LEFT] or keys[pygame.K_a]:
             self.direction.x = -1
-            self.face_right = False
+            self.facing = 'left'
         else:
             self.direction.x = 0
     
@@ -69,31 +75,28 @@ class Player(pygame.sprite.Sprite):
         # self.rect.centery = self.pos.y
     
     def animation(self):
-        frame_index = 1
-        frames = 4
-        animation_speed = 0.16
-        
-        while frame_index <= frames:
-            path = f'{ph_player_path}{int(frame_index)}{ending}'
-            self.image = load(path)
-            frame_index += animation_speed
+        for _ in range(self.frames):
+            path = f'{ph_player_path}{round(self.frame_index)}{ending}'
+            self.img_right = pygame.image.load(path)
+            self.img_left = pygame.transform.flip(self.img_right, True, False)
             
-            if frame_index == frames:
-                frame_index = 1
+            self.frame_index += self.animation_speed
+            
+            if self.frame_index >= self.frames:
+                self.frame_index = 1
     
     def flip(self, pos):
-        img_right = pygame.image.load(ph_player)
-        img_left = pygame.transform.flip(img_right, True, False)
-        
-        if self.face_right == True:
-            self.draw_player(pos, img_right)
-        elif self.face_right == False:
-            self.draw_player(pos, img_left)
+        if self.facing == 'right':
+            self.draw_player(pos, self.img_right)
+        elif self.facing == 'left':
+            self.draw_player(pos, self.img_left)
     
     def update(self, dt, surface, pos):
         # self.animation()
-        self.flip(pos)
         self.input()
         self.move(1)
+        self.animation()
+        self.flip(self.pos)
         debug(round(self.direction, 1), surface, 0)
         debug((round(self.rect.x, 1), round(self.rect.y, 1)), surface, 25)
+        debug(self.frame_index, surface, 50)
