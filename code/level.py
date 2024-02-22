@@ -52,7 +52,6 @@ class Level():
     def vertical_movement_collision(self):
         # setup for horizontal movement
         player = self.player.sprite
-        # player.rect.x += player.direction.x * player.speed
         
         # process player on ground
         for sprite in self.all_sprites.sprites():
@@ -71,7 +70,7 @@ class Level():
     
     def update_and_draw(self, surface, dt):
         # player 
-        self.player.update(dt, surface, self.player_pos)
+        self.player.update(dt, surface)
         self.player.draw(surface)
         
         # layer

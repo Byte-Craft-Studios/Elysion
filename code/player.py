@@ -17,9 +17,9 @@ class Player(pygame.sprite.Sprite):
         # player setup
         self.img_right = pygame.image.load(ph_player)
         self.img_left = pygame.transform.flip(self.img_right, True, False)
-        self.draw_player(pos, self.img_right)
+        
+        self.draw_player(self.img_right)
         self.rect = self.image.get_rect(center = pos)
-        self.facing = 'right'
         
         # player movement
         self.direction = pygame.math.Vector2(0, 0)
@@ -30,10 +30,13 @@ class Player(pygame.sprite.Sprite):
         self.frame_index = 1
         self.frames = 4
         self.animation_speed = 0.002
-    
-    def draw_player(self, pos, path):
-        self.image = path
         
+        # facing
+        self.facing = 'right'
+    
+    def draw_player(self, path):
+        # draw the player image and scale it
+        self.image = path
         self.image = pygame.transform.scale(self.image, (tile_size, tile_size))
     
     def input(self):
@@ -67,36 +70,43 @@ class Player(pygame.sprite.Sprite):
 		# horizontal movement
         self.pos.x += self.direction.x * self.speed * dt
         self.rect.x += self.direction.x * self.speed * dt
-        # self.rect.centerx = self.pos.x
         
 		# vertical movement
         self.pos.y += self.direction.y * self.speed * dt
         self.rect.y += self.direction.y * self.speed * dt
-        # self.rect.centery = self.pos.y
     
     def animation(self):
-        for _ in range(self.frames):
+        for _ in range(self.frames):    # infinite loop
+            
+            # path, which is changed
             path = f'{ph_player_path}{round(self.frame_index)}{ending}'
+            
+            # set the images
             self.img_right = pygame.image.load(path)
             self.img_left = pygame.transform.flip(self.img_right, True, False)
             
+            # change the frame index and reset the frame index
             self.frame_index += self.animation_speed
-            
             if self.frame_index >= self.frames:
                 self.frame_index = 1
     
-    def flip(self, pos):
+    def flip(self):
+        # choose the right image
         if self.facing == 'right':
-            self.draw_player(pos, self.img_right)
+            self.draw_player(self.img_right)
         elif self.facing == 'left':
-            self.draw_player(pos, self.img_left)
+            self.draw_player(self.img_left)
     
-    def update(self, dt, surface, pos):
-        # self.animation()
+    def update(self, dt, surface):
+        # movement 
         self.input()
         self.move(1)
+        
+        # draw the image and animate them
         self.animation()
-        self.flip(self.pos)
+        self.flip()
+        
+        # debugging tool
         debug(round(self.direction, 1), surface, 0)
         debug((round(self.rect.x, 1), round(self.rect.y, 1)), surface, 25)
         debug(self.frame_index, surface, 50)
