@@ -12,3 +12,5 @@ ending = '.png'
 
 ph_player_path = f'{normal_path}{player_path}/priest1/v1/{p_img_path}'
 ph_player = f'{normal_path}{player_path}/priest1/v1/{p_img_path}1{ending}'
+
+ph_player_spritesheet = 'tests\import spritecheets\warrior.png'
