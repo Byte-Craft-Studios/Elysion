@@ -1,30 +1,17 @@
 # import lib.
-import pygame
+import pygame, time
 
 # import variables / functions
-from settings import tile_size, p_speed, p_size
-from files_import import ph_player_path, ph_player, ending, ph_player_spritesheet
-from support import load
+from settings import p_speed, p_size
+from files_import import ph_player_spritesheet
 from debug import debug
 
 # import classes 
-from animation import Animation
 from support import Spritesheet
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos):
         super().__init__()
-        
-        # player setup
-        self.img_right = pygame.image.load(ph_player)
-        self.img_left = pygame.transform.flip(self.img_right, True, False)
-        
-        self.draw_player(self.img_right)
-        self.rect = self.image.get_rect(center = pos)
-        
-        # player image settings 
-        self.imgs = []
-        self.import_spritesheet()
         
         # player movement
         self.direction = pygame.math.Vector2(0, 0)
@@ -33,11 +20,27 @@ class Player(pygame.sprite.Sprite):
         
         # animation setup
         self.frame_index = 1
-        self.frames = 48
-        self.animation_speed = 0.0013
+        self.frames = 6
+        self.animation_speed = 0.0017
         
         # facing
         self.facing = 'right'
+        self.attack = False
+        
+        # player image settings 
+        self.imgs_idle_1 = []
+        self.imgs_idle_2 = []
+        self.imgs_attack_side_up = []
+        self.imgs_attack_side_down = []
+        self.imgs_attack_down_right = []
+        self.imgs_attack_down_left = []
+        self.imgs_attack_up_left = []
+        self.imgs_attack_up_right = []
+        
+        # player setup
+        self.import_spritesheet()
+        self.draw_player(self.imgs_idle_1[round(self.frame_index)-1])
+        self.rect = self.image.get_rect(center = pos)
     
     def draw_player(self, path):
         # draw the player image and scale it
@@ -49,23 +52,39 @@ class Player(pygame.sprite.Sprite):
         img = pygame.image.load(ph_player_spritesheet)
         
         # set image height and width 
-        img_height = img.get_height()
-        img_width = img.get_width()
+        spritesheet_height = img.get_height()
+        spritesheet_width = img.get_width()
         
         # numbers of images and set row and col
         img_size = 192
-        row = int(img_height / img_size)
-        col = int(img_width / img_size)
+        row = int(spritesheet_height / img_size)
+        col = int(spritesheet_width / img_size)
         
         sprite_sheet = Spritesheet(img)
-        BLACK = (0, 0, 0)
+        bg = (0, 0, 0)
         
         for i in range(row):
             for m in range(col):
-                image = sprite_sheet.get_img(m, i, img_size, img_size, 1, BLACK)
-                self.imgs.append(image)        
+                image = sprite_sheet.get_img(m, i, img_size, img_size, 1, bg)
+                
+                if i == 1:
+                    self.imgs_idle_1.append(image)
+                elif i == 2:
+                    self.imgs_idle_2.append(image)
+                elif i == 3:
+                    self.imgs_attack_side_up.append(image)
+                elif i == 4:
+                    self.imgs_attack_side_down.append(image)
+                elif i == 5:
+                    self.imgs_attack_down_right.append(image)
+                elif i == 6:
+                    self.imgs_attack_down_left.append(image)
+                elif i == 7:
+                    self.imgs_attack_up_left.append(image)
+                elif i == 8:
+                    self.imgs_attack_up_right.append(image)
     
-    def input(self):
+    def input(self, dt):
         # control system for player movement
         keys = pygame.key.get_pressed()
         
@@ -88,6 +107,15 @@ class Player(pygame.sprite.Sprite):
             self.facing = 'left'
         else:
             self.direction.x = 0
+        
+        # check for attacking
+        if keys[pygame.K_SPACE]:
+            self.attack = True
+            # self.frame_index = 1
+            
+            t = (self.frames / self.animation_speed * dt)
+        else:
+            self.attack = False
     
     def move(self,dt):
         
@@ -104,40 +132,53 @@ class Player(pygame.sprite.Sprite):
         self.rect.y += self.direction.y * self.speed * dt
     
     def animation(self):
-        for _ in range(self.frames):    # infinite loop
-            
-            # path, which is changed
-            path = f'{ph_player_path}{round(self.frame_index)}{ending}'
-            
-            # set the images
-            # self.img_right = pygame.image.load(path)
-            # self.img_left = pygame.transform.flip(self.img_right, True, False)
-            
-            self.img_right = self.imgs[(round(self.frame_index)-1)]
-            self.img_left = pygame.transform.flip(self.img_right, True, False)
-            
+        for _ in range(self.frames):
             # change the frame index and reset the frame index
             self.frame_index += self.animation_speed
             if self.frame_index >= self.frames:
                 self.frame_index = 1
     
-    def flip(self):
-        # choose the right image
+    def alignment(self):
+        
+        animation = (round(self.frame_index)-1)
+        
         if self.facing == 'right':
-            self.draw_player(self.img_right)
+            if self.attack:
+                self.animation()
+                image = self.imgs_attack_side_up[animation]
+            else:
+                self.animation()
+                image = self.imgs_idle_1[animation]
+        
         elif self.facing == 'left':
-            self.draw_player(self.img_left)
+            if self.attack:
+                self.animation()
+                img = self.imgs_attack_side_up[animation]
+            else:
+                self.animation()
+                img = self.imgs_idle_1[animation]
+            
+            image = pygame.transform.flip(img, True, False)
+        
+        elif self.facing == 'up':
+            if self.attack:
+                image = self.imgs_attack_up_left[animation]
+        
+        elif self.facing == 'down':
+            if self.attack:
+                image = self.imgs_attack_down_right[animation]
+        
+        self.draw_player(image)
     
     def update(self, dt, surface):
         # movement 
-        self.input()
+        self.input(dt)
         self.move(dt)
         
         # draw the image and animate them
-        self.animation()
-        self.flip()
+        self.alignment()
         
         # debugging tool
         debug(round(self.direction, 1), surface, 0)
-        debug((round(self.rect.x, 1), round(self.rect.y, 1)), surface, 25)
-        debug(self.frame_index, surface, 50)
+        debug((round(self.rect.x, 1), round(self.rect.y, 1)), surface, 1)
+        debug(self.frame_index, surface, 2)
