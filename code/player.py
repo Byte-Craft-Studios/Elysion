@@ -8,7 +8,6 @@ from debug import debug
 
 # import classes 
 from support import Spritesheet
-
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos):
         super().__init__()
