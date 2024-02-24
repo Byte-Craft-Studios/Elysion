@@ -23,23 +23,28 @@ class Player(pygame.sprite.Sprite):
         self.frames = 6
         self.animation_speed = 0.0017
         
-        # facing
-        self.facing = 'right'
+        # status
+        self.status = 'right'
         self.attack = False
         
         # player image settings 
-        self.imgs_idle_1 = []
-        self.imgs_idle_2 = []
-        self.imgs_attack_side_up = []
-        self.imgs_attack_side_down = []
-        self.imgs_attack_down_right = []
-        self.imgs_attack_down_left = []
-        self.imgs_attack_up_left = []
-        self.imgs_attack_up_right = []
+        self.imgs_idle = []
+        self.imgs_run = []
+        self.imgs_down = []
+        self.imgs_up = []
+        
+        self.imgs_idle_attack = []
+        self.imgs_idle_attack_down = []
+        self.imgs_idle_attack_up = []
+        
+        self.imgs_run_attack = []
+        self.imgs_run_attack_down = []
+        self.imgs_run_attack_up = []
+        
         
         # player setup
         self.import_spritesheet()
-        self.draw_player(self.imgs_idle_1[round(self.frame_index)-1])
+        self.draw_player(self.imgs_idle[round(self.frame_index)-1])
         self.rect = self.image.get_rect(center = pos)
     
     def draw_player(self, path):
@@ -67,53 +72,57 @@ class Player(pygame.sprite.Sprite):
             for m in range(col):
                 image = sprite_sheet.get_img(m, i, img_size, img_size, 1, bg)
                 
-                if i == 1:
-                    self.imgs_idle_1.append(image)
+                if i == 0:
+                    self.imgs_idle.append(image)
+                
+                elif i == 1:
+                    self.imgs_run.append(image)
+                
                 elif i == 2:
-                    self.imgs_idle_2.append(image)
+                    self.imgs_run_attack.append(image)
+                
                 elif i == 3:
-                    self.imgs_attack_side_up.append(image)
+                    self.imgs_idle_attack.append(image)
+                
                 elif i == 4:
-                    self.imgs_attack_side_down.append(image)
+                    self.imgs_run_attack_down.append(image)
+                
                 elif i == 5:
-                    self.imgs_attack_down_right.append(image)
+                    self.imgs_idle_attack_down.append(image)
+                
                 elif i == 6:
-                    self.imgs_attack_down_left.append(image)
+                    self.imgs_run_attack_up.append(image)
+                
                 elif i == 7:
-                    self.imgs_attack_up_left.append(image)
-                elif i == 8:
-                    self.imgs_attack_up_right.append(image)
+                    self.imgs_idle_attack_up.append(image)
     
-    def input(self, dt):
+    def input(self):
         # control system for player movement
         keys = pygame.key.get_pressed()
         
         # vertical movement
         if keys[pygame.K_UP] or keys[pygame.K_w]:
             self.direction.y = -1
-            self.facing = 'up'
+            self.status = 'up'
         elif keys[pygame.K_DOWN] or keys[pygame.K_s]:
             self.direction.y = 1
-            self.facing = 'down'
+            self.status = 'down'
         else:
             self.direction.y = 0
         
         # horizontal movement
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             self.direction.x = 1
-            self.facing = 'right'
+            self.status = 'right'
         elif keys[pygame.K_LEFT] or keys[pygame.K_a]:
             self.direction.x = -1
-            self.facing = 'left'
+            self.status = 'left'
         else:
             self.direction.x = 0
         
         # check for attacking
         if keys[pygame.K_SPACE]:
             self.attack = True
-            # self.frame_index = 1
-            
-            t = (self.frames / self.animation_speed * dt)
         else:
             self.attack = False
     
@@ -140,39 +149,46 @@ class Player(pygame.sprite.Sprite):
     
     def alignment(self):
         
+        self.animation()
         animation = (round(self.frame_index)-1)
         
-        if self.facing == 'right':
+        if self.status == 'right':
             if self.attack:
-                self.animation()
-                image = self.imgs_attack_side_up[animation]
+                image = self.imgs_idle_attack[animation]
             else:
-                self.animation()
-                image = self.imgs_idle_1[animation]
+                image = self.imgs_run[animation]
         
-        elif self.facing == 'left':
+        elif self.status == 'left':
             if self.attack:
-                self.animation()
-                img = self.imgs_attack_side_up[animation]
+                img = self.imgs_idle_attack[animation]
             else:
-                self.animation()
-                img = self.imgs_idle_1[animation]
+                img = self.imgs_run[animation]
             
             image = pygame.transform.flip(img, True, False)
         
-        elif self.facing == 'up':
+        elif self.status == 'up':
             if self.attack:
-                image = self.imgs_attack_up_left[animation]
+                image = self.imgs_idle_attack_up[animation]
+            else:
+                image = self.imgs_idle[animation]
         
-        elif self.facing == 'down':
+        elif self.status == 'down':
             if self.attack:
-                image = self.imgs_attack_down_right[animation]
+                image = self.imgs_idle_attack_down[animation]
+            else:
+                image = self.imgs_idle[animation]
+        
+        else:
+            if self.attack:
+                image = self.imgs_idle_attack[animation]
+            else:
+                image = self.imgs_idle[animation]
         
         self.draw_player(image)
     
     def update(self, dt, surface):
         # movement 
-        self.input(dt)
+        self.input()
         self.move(dt)
         
         # draw the image and animate them
@@ -182,3 +198,4 @@ class Player(pygame.sprite.Sprite):
         debug(round(self.direction, 1), surface, 0)
         debug((round(self.rect.x, 1), round(self.rect.y, 1)), surface, 1)
         debug(self.frame_index, surface, 2)
+        debug(self.status, surface, 3)
