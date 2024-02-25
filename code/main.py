@@ -1,10 +1,9 @@
 # import lib. 
-import pygame, sys, time
+import pygame, sys
 
 # import variables / functions
 from settings import screen_width, screen_height
 from text_import import game_name
-from debug import debug
 
 # import classes
 from level import Level
