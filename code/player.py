@@ -1,5 +1,5 @@
 # import lib.
-import pygame, time
+import pygame
 
 # import variables / functions
 from settings import p_speed, p_size
@@ -8,6 +8,7 @@ from debug import debug
 
 # import classes 
 from support import Spritesheet
+
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos):
         super().__init__()
@@ -198,3 +199,4 @@ class Player(pygame.sprite.Sprite):
         debug((round(self.rect.x, 1), round(self.rect.y, 1)), surface, 1)
         debug(self.frame_index, surface, 2)
         debug(self.status, surface, 3)
+        debug(round(self.pos), surface, 4)
