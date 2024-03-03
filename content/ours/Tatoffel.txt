@@ -1,23 +1,37 @@
-general story (partially only when player is Nick)
-    people are slacking of (school, basketball)
-    
-    warning not to play the game
-    trying to find civilisation after character creation
-    (minigame) break through wall and fight trolls with players
-    exit game to eat dinner
-----potential demo end
-    
+ story
 
-quests
-    1   have to find the game
-    2   go to the light (hut)
-    3   help the others out
-----potential demo end
-    4   
+
+(story) quest ideas
+    general
+        fetch quest (needs spread out items across map)
+        kill x y times (/gather from killed (would need loot tables))
+    1. find out who you are
+        talk with man at the hut next to the player
+            topics like "What is this place?", "Where/Who am I?"
+            generic answers (no real information)
+        go to the tower at the [east] and create your character
+    2. 
+        find a way to traverse the wall next to the tower
 
 general ideas
     character creation is neccecary (game)
     textboxes/pop-ups for storytelling
     quest menu
-    LOL movement (point and click like in the book)
+//  LOL movement (point and click like in the book)
     health and stamina bars
+    early game: easy quest, seldom easy minigames/time leaps for level-ups/healing
+    warning not to play the game
+
+//quests
+//    1   have to find the game
+      2   go to the light (hut)
+//    3   help the others out
+//----potential demo end
+//general story (partially only when player is Nick)
+//    people are slacking of (school, basketball)
+//    
+      warning not to play the game
+      trying to find civilisation after character creation
+//    (minigame) break through wall and fight trolls with players
+//    exit game to eat dinner
+//----potential demo end
