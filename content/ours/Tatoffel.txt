@@ -2,7 +2,7 @@ general story (partially only when player is Nick)
     people are slacking of (school, basketball)
     
     warning not to play the game
-    trying to find civilisation after character creation
+    trying to find civilization after character creation
     (minigame) break through wall and fight trolls with players
     exit game to eat dinner
 ----potential demo end
@@ -16,7 +16,7 @@ quests
     4   
 
 general ideas
-    character creation is neccecary (game)
+    character creation is necessary (game)
     textboxes/pop-ups for storytelling
     quest menu
     LOL movement (point and click like in the book)
