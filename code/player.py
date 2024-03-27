@@ -4,7 +4,7 @@ import pygame
 # import variables / functions
 from settings import p_speed, p_size
 from files_import import ph_player_spritesheet
-from debug import debug
+from support import debug
 
 # import classes 
 from support import Spritesheet

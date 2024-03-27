@@ -11,17 +11,17 @@ surface = pygame.display.set_mode((screen_width,screen_height))
 font = pygame.font.Font(None ,30)
 
 # debugging surface
-def debug(info, surface=None, y = 10, x = 10):
+def debug(info:str, surface=None, y:int = 1, x:int = 1):
     if not surface:
         display_surf = pygame.display.get_surface()
     else:
         display_surf = surface
     debug_surf = font.render(str(info), True, 'white')
-    debug_rect = debug_surf.get_rect(topleft = (x, y))
+    debug_rect = debug_surf.get_rect(topleft = ((x*25-15), (y*25+10)))
     pygame.draw.rect(surface, 'black', debug_rect)
     display_surf.blit(debug_surf, debug_rect)
 
-def load(path):
+def load(path:str):
     pygame.image.load(path).convert_alpha()
 
 # a class to subtract the spritesheet in different small images
@@ -29,7 +29,7 @@ class Spritesheet():
     def __init__(self, image):
         self.image = image
     
-    def get_img(self, col, row, width, height, scale, color):
+    def get_img(self, col: int, row:int, width:int, height:int, scale:int, color:str):
         image = pygame.Surface((width, height)).convert_alpha()
         # image.fill('grey')
         image.blit(self.image, (0, 0), ((col * width), (row * height), width, height))
@@ -39,7 +39,7 @@ class Spritesheet():
         
         return image
 
-def get_time(func: Callable) -> Callable: 
+def get_time(func:Callable): 
     @wraps(func)
     def wrapper(*args, **kwargs) -> Any:
         
